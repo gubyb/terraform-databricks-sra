@@ -15,6 +15,7 @@ provider "aws" {
   default_tags {
     tags = {
       Resource = var.resource_prefix
+      owner = var.admin_user
     }
   }
 }

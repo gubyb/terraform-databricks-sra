@@ -35,6 +35,39 @@ resource "aws_security_group" "privatelink" {
     protocol        = "tcp"
     security_groups = [aws_security_group.sg[0].id]
   }
+  # Not sure if needed
+
+  # egress {
+  #   description     = "Databricks - PrivateLink Endpoint SG - REST API"
+  #   from_port       = 443
+  #   to_port         = 443
+  #   protocol        = "tcp"
+  #   security_groups = [aws_security_group.sg[0].id]
+  # }
+
+  # egress {
+  #   description     = "Databricks - PrivateLink Endpoint SG - Secure Cluster Connectivity"
+  #   from_port       = 6666
+  #   to_port         = 6666
+  #   protocol        = "tcp"
+  #   security_groups = [aws_security_group.sg[0].id]
+  # }
+
+  # egress {
+  #   description     = "Databricks - PrivateLink Endpoint SG - Secure Cluster Connectivity - Compliance Security Profile"
+  #   from_port       = 2443
+  #   to_port         = 2443
+  #   protocol        = "tcp"
+  #   security_groups = [aws_security_group.sg[0].id]
+  # }
+
+  # egress {
+  #   description     = "Databricks - PrivateLink Endpoint SG - Future Extendability"
+  #   from_port       = 8443
+  #   to_port         = 8451
+  #   protocol        = "tcp"
+  #   security_groups = [aws_security_group.sg[0].id]
+  # }
 
   tags = {
     Name    = "${var.resource_prefix}-private-link-sg",

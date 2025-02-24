@@ -4,7 +4,8 @@
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.1"
-  count   = var.network_configuration != "custom" ? 1 : 0
+
+  count = 1
 
   name = "${var.resource_prefix}-classic-compute-plane-vpc"
   cidr = var.vpc_cidr_range
@@ -15,6 +16,9 @@ module "vpc" {
   single_nat_gateway     = false
   one_nat_gateway_per_az = false
   create_igw             = false
+
+  public_subnet_names = []
+  public_subnets      = []
 
   private_subnet_names = [for az in var.availability_zones : format("%s-private-%s", var.resource_prefix, az)]
   private_subnets      = var.private_subnets_cidr
