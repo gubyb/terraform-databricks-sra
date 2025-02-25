@@ -1,3 +1,8 @@
+data "databricks_user" "admin_user" {
+  provider     = databricks.mws
+  user_name = var.admin_user
+}
+
 module "SRA" {
   source = "./modules/sra"
   providers = {
@@ -35,4 +40,6 @@ module "SRA" {
   # custom_sg_id              = "sg-0123456789abcdef0" // Example security group ID
   # custom_relay_vpce_id      = "vpce-0abc123456def7890" // Example PrivateLink endpoint ID for Databricks relay
   # custom_workspace_vpce_id  = "vpce-0abcdef1234567890" // Example PrivateLink endpoint ID for Databricks workspace
+
+  user_id = data.databricks_user.admin_user.id
 }

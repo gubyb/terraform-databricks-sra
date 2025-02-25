@@ -173,3 +173,7 @@ variable "workspace" {
     #"us-west-1" = ""
   }
 }
+
+variable "user_id" {
+  type = string
+}

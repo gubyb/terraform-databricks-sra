@@ -60,6 +60,6 @@ module "user_assignment" {
   }
 
   created_workspace_id = module.databricks_mws_workspace.workspace_id
-  workspace_access     = var.admin_user
+  user_id              = var.user_id
   depends_on           = [module.uc_assignment, module.databricks_mws_workspace]
 }
