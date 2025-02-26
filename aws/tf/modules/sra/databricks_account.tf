@@ -44,8 +44,8 @@ module "databricks_mws_workspace" {
   cross_account_role_arn      = aws_iam_role.cross_account_role.arn
   bucket_name                 = aws_s3_bucket.root_storage_bucket.id
   region                      = var.region
-  backend_rest                = var.custom_workspace_vpce_id != null ? var.custom_workspace_vpce_id : aws_vpc_endpoint.backend_rest[0].id
-  backend_relay               = var.custom_relay_vpce_id != null ? var.custom_relay_vpce_id : aws_vpc_endpoint.backend_relay[0].id
+  backend_rest                = ""
+  backend_relay               = ""
   managed_storage_key         = aws_kms_key.managed_storage.arn
   workspace_storage_key       = aws_kms_key.workspace_storage.arn
   managed_storage_key_alias   = aws_kms_alias.managed_storage_key_alias.name

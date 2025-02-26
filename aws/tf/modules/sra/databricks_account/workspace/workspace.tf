@@ -25,21 +25,21 @@ resource "databricks_mws_storage_configurations" "this" {
   storage_configuration_name = "${var.resource_prefix}-storage"
 }
 
-// Backend REST VPC Endpoint Configuration
-resource "databricks_mws_vpc_endpoint" "backend_rest" {
-  account_id          = var.databricks_account_id
-  aws_vpc_endpoint_id = var.backend_rest
-  vpc_endpoint_name   = "${var.resource_prefix}-vpce-backend-${var.vpc_id}"
-  region              = var.region
-}
+# // Backend REST VPC Endpoint Configuration
+# resource "databricks_mws_vpc_endpoint" "backend_rest" {
+#   account_id          = var.databricks_account_id
+#   aws_vpc_endpoint_id = var.backend_rest
+#   vpc_endpoint_name   = "${var.resource_prefix}-vpce-backend-${var.vpc_id}"
+#   region              = var.region
+# }
 
-// Backend Rest VPC Endpoint Configuration
-resource "databricks_mws_vpc_endpoint" "backend_relay" {
-  account_id          = var.databricks_account_id
-  aws_vpc_endpoint_id = var.backend_relay
-  vpc_endpoint_name   = "${var.resource_prefix}-vpce-relay-${var.vpc_id}"
-  region              = var.region
-}
+# // Backend Rest VPC Endpoint Configuration
+# resource "databricks_mws_vpc_endpoint" "backend_relay" {
+#   account_id          = var.databricks_account_id
+#   aws_vpc_endpoint_id = var.backend_relay
+#   vpc_endpoint_name   = "${var.resource_prefix}-vpce-relay-${var.vpc_id}"
+#   region              = var.region
+# }
 
 // Network Configuration
 resource "databricks_mws_networks" "this" {
@@ -48,10 +48,10 @@ resource "databricks_mws_networks" "this" {
   security_group_ids = var.security_group_ids
   subnet_ids         = var.subnet_ids
   vpc_id             = var.vpc_id
-  vpc_endpoints {
-    dataplane_relay = [databricks_mws_vpc_endpoint.backend_relay.vpc_endpoint_id]
-    rest_api        = [databricks_mws_vpc_endpoint.backend_rest.vpc_endpoint_id]
-  }
+  # vpc_endpoints {
+  #   dataplane_relay = [databricks_mws_vpc_endpoint.backend_relay.vpc_endpoint_id]
+  #   rest_api        = [databricks_mws_vpc_endpoint.backend_rest.vpc_endpoint_id]
+  # }
 }
 
 // Managed Key Configuration
