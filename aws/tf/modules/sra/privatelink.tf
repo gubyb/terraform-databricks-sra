@@ -320,35 +320,3 @@ module "vpc_endpoints" {
     }
   }
 }
-
-// Databricks REST endpoint - skipped in custom operation mode
-resource "aws_vpc_endpoint" "backend_rest" {
-  count = var.network_configuration != "custom" ? 1 : 0
-
-  vpc_id              = module.vpc[0].vpc_id
-  service_name        = var.workspace[var.region]
-  vpc_endpoint_type   = "Interface"
-  security_group_ids  = [aws_security_group.privatelink[0].id]
-  subnet_ids          = module.vpc[0].intra_subnets
-  private_dns_enabled = true
-  tags = {
-    Name    = "${var.resource_prefix}-databricks-backend-rest"
-    Project = var.resource_prefix
-  }
-}
-
-// Databricks SCC endpoint - skipped in custom operation mode
-resource "aws_vpc_endpoint" "backend_relay" {
-  count = var.network_configuration != "custom" ? 1 : 0
-
-  vpc_id              = module.vpc[0].vpc_id
-  service_name        = var.scc_relay[var.region]
-  vpc_endpoint_type   = "Interface"
-  security_group_ids  = [aws_security_group.privatelink[0].id]
-  subnet_ids          = module.vpc[0].intra_subnets
-  private_dns_enabled = true
-  tags = {
-    Name    = "${var.resource_prefix}-databricks-backend-relay"
-    Project = var.resource_prefix
-  }
-}

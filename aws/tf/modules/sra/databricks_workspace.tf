@@ -28,18 +28,18 @@ module "system_table" {
 }
 
 // Create Create Cluster
-module "cluster_configuration" {
-  source = "./databricks_workspace/classic_cluster"
-  providers = {
-    databricks = databricks.created_workspace
-  }
+# module "cluster_configuration" {
+#   source = "./databricks_workspace/classic_cluster"
+#   providers = {
+#     databricks = databricks.created_workspace
+#   }
 
-  resource_prefix = var.resource_prefix
+#   resource_prefix = var.resource_prefix
 
-  depends_on = [
-    module.databricks_mws_workspace, module.vpc_endpoints
-  ]
-}
+#   depends_on = [
+#     module.databricks_mws_workspace, module.vpc_endpoints
+#   ]
+# }
 
 // Restrictive DBFS bucket policy
 module "restrictive_root_bucket" {
