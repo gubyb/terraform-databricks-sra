@@ -77,37 +77,37 @@ module "network_policy" {
 }
 
 # Create Network Connectivity Connection Object
-module "ncc_init" {
-  source = "./databricks_account/ncc_init"
-  providers = {
-    databricks = databricks.mws
-  }
+# module "ncc_init" {
+#   source = "./databricks_account/ncc_init"
+#   providers = {
+#     databricks = databricks.mws
+#   }
 
-  region          = var.region
-  resource_prefix = var.resource_prefix
-}
+#   region          = var.region
+#   resource_prefix = var.resource_prefix
+# }
 
-# Bind Network Connectivity Connection Object
-module "ncc_binding" {
-  source = "./databricks_account/ncc_binding"
-  providers = {
-    databricks = databricks.mws
-  }
+# # Bind Network Connectivity Connection Object
+# module "ncc_binding" {
+#   source = "./databricks_account/ncc_binding"
+#   providers = {
+#     databricks = databricks.mws
+#   }
 
-  ncc_id       = module.ncc_init.ncc_id
-  workspace_id = module.databricks_mws_workspace.workspace_id
+#   ncc_id       = module.ncc_init.ncc_id
+#   workspace_id = module.databricks_mws_workspace.workspace_id
 
-  depends_on = [module.databricks_mws_workspace]
-}
+#   depends_on = [module.databricks_mws_workspace]
+# }
 
-# Audit log delivery
-module "log_delivery" {
-  count  = var.audit_log_delivery_exists ? 0 : 1
-  source = "./databricks_account/audit_log_delivery"
-  providers = {
-    databricks = databricks.mws
-  }
+# # Audit log delivery
+# module "log_delivery" {
+#   count  = var.audit_log_delivery_exists ? 0 : 1
+#   source = "./databricks_account/audit_log_delivery"
+#   providers = {
+#     databricks = databricks.mws
+#   }
 
-  databricks_account_id = var.databricks_account_id
-  resource_prefix       = var.resource_prefix
-}
+#   databricks_account_id = var.databricks_account_id
+#   resource_prefix       = var.resource_prefix
+# }

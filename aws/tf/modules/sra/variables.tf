@@ -166,6 +166,16 @@ variable "vpc_cidr_range" {
   type        = string
 }
 
+variable "secondary_vpc_cidr_range" {
+  description = "secondary CIDR range for the VPC."
+  type        = string
+}
+
+variable "public_subnets_cidr" {
+  description = "Public subnets"
+  type        = list(string)
+}
+
 variable "workspace" {
   description = "Workspace API PrivateLink Endpoint Map"
   type        = map(string)

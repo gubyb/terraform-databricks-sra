@@ -24,6 +24,8 @@ module "sra" {
   vpc_cidr_range           = "10.0.0.0/18" # Please re-define the subsequent subnet ranges if the VPC CIDR range is updated.
   private_subnets_cidr     = ["10.0.0.0/22", "10.0.4.0/22", "10.0.8.0/22"]
   privatelink_subnets_cidr = ["10.0.28.0/26", "10.0.28.64/26", "10.0.28.128/26"]
+  secondary_vpc_cidr_range = "10.2.0.0/24"
+  public_subnets_cidr      = ["10.2.0.0/26", "10.2.0.64/26", "10.2.0.128/26"]
   availability_zones       = [data.aws_availability_zones.available.names[0], data.aws_availability_zones.available.names[1], data.aws_availability_zones.available.names[2]]
   sg_egress_ports          = [443, 2443, 6666, 8443, 8444, 8445, 8446, 8447, 8448, 8449, 8450, 8451]
 
@@ -38,7 +40,7 @@ module "sra" {
   # custom_workspace_vpce_id  = "vpce-0abcdef1234567890" # Example PrivateLink endpoint ID for Databricks workspace
 
   # OPTIONAL - ENABLE SECURITY ANALYSIS TOOL:
-  enable_security_analysis_tool = true
+  enable_security_analysis_tool = false
 
   # OPTIONAL - DEPLOYMENT NAME:
   deployment_name = null # Deployment name for the workspace. Must first be enabled by a Databricks representative.
