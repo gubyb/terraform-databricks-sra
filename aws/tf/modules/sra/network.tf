@@ -17,7 +17,7 @@ module "vpc" {
   enable_nat_gateway     = true
   single_nat_gateway     = false
   one_nat_gateway_per_az = true
-  create_igw             = true
+  create_igw             = false
 
   public_subnet_names = [for az in var.availability_zones : format("%s-public-%s", var.resource_prefix, az)]
   public_subnets      = var.public_subnets_cidr
